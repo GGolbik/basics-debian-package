@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Exit on error
+set -e
+
+# Source debconf library. Do not call echo before this.
+. /usr/share/debconf/confmodule
+
+echo "preinst..."
+
+#echo "preinst: check configuration"
+# Check their answer.
+# with db_get you load value into $RET env variable.
+db_get ggolbik-basics/accept-eula
+
+ACCEPT_EULA_ANSWER=$RET
+echo "preinst: Answer:$ACCEPT_EULA_ANSWER"
+if [ $ACCEPT_EULA_ANSWER != true ]; then
+    >&2 echo "The installation is canceled because the EULA has not been accepted."
+    exit 1
+fi
+
+echo "preinst done"

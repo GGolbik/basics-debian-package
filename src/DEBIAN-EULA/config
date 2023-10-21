@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Exit on error
+set -e
+
+# Source debconf library. Do not call echo before this.
+. /usr/share/debconf/confmodule
+
+echo "config..."
+
+# Ask questions
+# reset question
+db_fset ggolbik-basics/accept-eula seen false
+# Accept EULA
+db_input high ggolbik-basics/accept-eula || true
+
+# Show interface
+db_go || true
+
+echo "config done"

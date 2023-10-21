@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Exit on error
+set -e
+
+# When your package is purged, it should get rid of all the questions and templates it was using in the database.
+# Accomplishing this is simple; use the "purge" command (make sure you don't fail if debconf has already been removed, though):
+
+# Note the effect of -a depends on its position: If it's at the start, it means file exists. If it's in the middle of two expressions, it means logical and.
+# -e checks if the file exists
+if [ "$1" = "purge" -a -e /usr/share/debconf/confmodule ]; then
+    # Source debconf library. Do not call echo before this.
+    . /usr/share/debconf/confmodule
+    # Remove my changes to the db.
+    db_purge
+fi
