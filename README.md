@@ -9,6 +9,7 @@
 * [Extracting](#extracting)
 * [Installing Package](#installing-package)
 * [Remove Package](#remove-package)
+* [Template Example](#template-example)
 
 # Prepare
 
@@ -59,6 +60,21 @@ dpkg-deb -xv <file.deb> </path/to/where/extract>
 sudo dpkg -i <path to deb file>
 ~~~
 
+For non-interactively installation call
+~~~
+yes | sudo dpkg -i <path to deb file>
+~~~
+
+or
+~~~
+sudo dpkg --force-confold -i <path to deb file>
+~~~
+
+If you aren't running dpkg directly, apt and friends allow you to pass options to it with
+~~~
+apt install -o Dpkg::Options::="--force-confold" install package
+~~~
+
 # Remove Package
 
 ~~~
@@ -72,5 +88,9 @@ grep " install " /var/log/dpkg.log | tail
 
 There you should find the package name e.g.:
 ~~~
-2021-11-13 11:59:40 install ggolbik-basic:all <none> 1.0-1
+2021-11-13 11:59:40 install ggolbik-basics:all <none> 1.0-1
 ~~~
+
+# Template Example
+
+The `src/DEBIAN-EULA` directory contains an example for `src/DEBIAN` which makes use of an template. In this example an EULA is displayed.

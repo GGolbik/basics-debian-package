@@ -1,6 +1,6 @@
 #!/bin/sh
 
-APP_NAME=ggolbik-basic
+APP_NAME=ggolbik-basics
 APP_VERSION=1.0-1
 DEB_NAME=${APP_NAME}_${APP_VERSION}_all
 
@@ -23,10 +23,10 @@ chmod 0755 ./${DEB_NAME}/DEBIAN/postinst
 chmod 0755 ./${DEB_NAME}/DEBIAN/postrm
 chmod 0755 ./${DEB_NAME}/DEBIAN/preinst
 chmod 0755 ./${DEB_NAME}/DEBIAN/prerm
-chmod 0755 ./${DEB_NAME}/usr/local/bin/ggolbik-basic
+chmod 0755 ./${DEB_NAME}/usr/local/bin/ggolbik-basics
 
 # compress man page
-gzip ./${DEB_NAME}/usr/local/share/man/man1/ggolbik-basic.1
+gzip ./${DEB_NAME}/usr/local/share/man/man1/ggolbik-basics.1
 
 # build package
 dpkg-deb --build ${DEB_NAME}
